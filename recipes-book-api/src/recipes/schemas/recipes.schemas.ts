@@ -22,6 +22,9 @@ export class Recipe {
 
   @Prop({ type: String, enum: RecipeDifficultyEnum })
   difficulty: any;
+
+  @Prop({ type: Number })
+  cookingTime: number;
 }
 
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);
