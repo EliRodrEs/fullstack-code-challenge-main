@@ -2,6 +2,7 @@ import { Recipe, RecipeDocument } from './schemas/recipes.schemas';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { RecipeDto } from './recipe.interface';
 
 @Injectable()
 export class RecipesService {
@@ -10,21 +11,22 @@ export class RecipesService {
     private readonly recipesModule: Model<RecipeDocument>,
   ) {}
 
-  async getAll(): Promise<any> {
+  async getAll(): Promise<RecipeDocument[]> {
     return this.recipesModule.find().exec();
   }
 
-  async createRecipe(payload: any): Promise<any> {
+  async createRecipe(payload: RecipeDto): Promise<RecipeDocument> {
     try {
       const recipe = new this.recipesModule(payload);
       await recipe.save();
       return recipe;
     } catch (error) {
-      throw new Error(error.message);
+      console.error('createRecipe() -> Error creating recipe:', error);
+      throw new Error('Failed to create recipe');
     }
   }
 
-  async searchRecipes(name?: string, cookingTime?: number, ingredients?: string[]): Promise<any> {
+  async searchRecipes(name?: string, cookingTime?: number, ingredients?: string[]): Promise<RecipeDocument[]> {
     const query: any = {}
     if(name) {
       query.name = {$regex: name, $options: 'i'}
@@ -36,6 +38,11 @@ export class RecipesService {
       query.ingredients = { $all: ingredients }
     }
 
-    return this.recipesModule.find(query).exec()
+    try {
+      return this.recipesModule.find(query).exec()
+    } catch (error) {
+      console.error('searchRecipes() -> Error searching for recipes:', error);
+      throw new Error('Failed to search for recipes');
+    }
   }
 }
