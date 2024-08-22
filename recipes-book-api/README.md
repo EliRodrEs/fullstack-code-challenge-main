@@ -8,10 +8,10 @@ This repository implements an API to manage a cooking recipe book. The API is no
 
 ### User stories
 
-- As a user, I would like to store the cooking time (in minutes).
-- As a user, I would like to consult the recipes by searching by the name of the dish or the cooking time (in minutes).
-- As a user, I would like to create a new recipe.
-- Given a list of ingredients, I would like to know all recipes I can cook.
+[X] As a user, I would like to store the cooking time (in minutes).
+[X] As a user, I would like to consult the recipes by searching by the name of the dish or the cooking time (in minutes).
+[X] As a user, I would like to create a new recipe.
+[X] Given a list of ingredients, I would like to know all recipes I can cook.
 
 ### Other requirements
 - Replace the "any" types in the code with valuable types.
