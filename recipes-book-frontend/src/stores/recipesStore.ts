@@ -6,7 +6,7 @@ export const useRecipesStore = defineStore('recipes', () => {
   const loaded = ref(false)
   const loading = ref(false)
 
-  const apiUrl = 'http://localhost:3000'
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
   async function getAllRecipies() {
     loaded.value = false
@@ -19,17 +19,16 @@ export const useRecipesStore = defineStore('recipes', () => {
         }
       })
       if (!response.ok) {
-        loaded.value = false
-        loading.value = false
         throw new Error(`Response status: ${response.status}`)
       }
 
       const recipesList = await response.json()
       recipes.value = recipesList
       loaded.value = true
-      loading.value = false
     } catch (error) {
       console.error(error)
+    } finally {
+      loading.value = false
     }
   }
   return {
