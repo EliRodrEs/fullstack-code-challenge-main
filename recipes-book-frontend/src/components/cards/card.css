@@ -1,0 +1,130 @@
+/* Card Styles */
+.card {
+    width: 25rem;
+    height: 15rem;
+    position: relative;
+    padding: 2rem;
+    background-color: #4c9beb;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow-y: scroll;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Container and Cloud Styles */
+.container {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: -35px;
+    top: -50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.7);
+}
+
+.cloud {
+    width: 250px;
+}
+
+.front {
+    padding-top: 45px;
+    margin-left: 25px;
+    display: inline;
+    position: absolute;
+    z-index: 11;
+    animation: clouds 8s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.back {
+    margin-top: -30px;
+    margin-left: 150px;
+    z-index: 12;
+    animation: clouds 12s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.right-front, .left-front, .right-back, .left-back {
+    background-color: #4c9beb; 
+}
+
+
+/* Card Header Styles */
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-header span:first-child {
+    word-break: break-all;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 135%;
+    color: #333;
+}
+
+.card-header span:last-child {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 135%;
+    color: #666;
+}
+
+/* Temperature Styling */
+.temp {
+    position: absolute;
+    left: 25px;
+    bottom: 12px;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #333;
+}
+
+.temp-scale {
+    width: 80px;
+    height: 36px;
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9px;
+}
+
+.temp-scale span {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 134.49%;
+    color: #333;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #5e53f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4644da;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1ba6c9;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }

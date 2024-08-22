@@ -1,24 +1,18 @@
 <template>
-  <div>
+  <div class="wrapper">
     <h1>My recipes</h1>
 
     <div class="loader-msg" v-if="loading"> Loading Recipes... </div>
     <div class="error-msg" v-if="!loading && !loaded">We couldn't find any recipe</div>
-
-    <ul class="recipes-list" v-if="loaded">
-      <li v-for="recipe in recipes" :key="recipe._id">
-        <h2>{{ recipe.name }}</h2>
-        <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
-        <p><strong>Descipription:</strong> {{ recipe.description }}</p>
-        <p><strong>Cooking time:</strong> {{ recipe.cookingTime }} (minutes)</p>
-        <p><strong>Ingredients</strong> {{ recipe.ingredients.join(', ') }}</p>
-      </li>
-    </ul>
+    <div class="recipes-list" v-if="loaded">
+      <RecipeCard v-for="recipe in recipes" :key="recipe._id" :recipe="recipe" />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 import { useRecipesStore } from '../stores/recipesStore'
+import RecipeCard from './cards/RecipeCard.vue' 
 
 const recipesStore = useRecipesStore()
 
@@ -31,3 +25,16 @@ const recipes = computed(() => recipesStore.recipes)
 const loading = computed(() => recipesStore.loading)
 const loaded = computed(() => recipesStore.loaded)
 </script>
+
+<style scoped>
+
+.wrapper {
+  width: 100%;
+}
+.recipes-list {
+  display: flex;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+}
+</style>
