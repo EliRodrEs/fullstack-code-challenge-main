@@ -28,6 +28,6 @@ onMounted(() => {
   }
 })
 const recipes = computed(() => recipesStore.recipes)
-const loading = computed(() => recipeStore.loading)
-const loaded = computed(() => recipeStore.loaded)
+const loading = computed(() => recipesStore.loading)
+const loaded = computed(() => recipesStore.loaded)
 </script>
