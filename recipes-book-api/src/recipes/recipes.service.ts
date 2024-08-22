@@ -24,21 +24,18 @@ export class RecipesService {
     }
   }
 
-  async searchRecipeByNameOrTime(name?: string, cookingTime?: number): Promise<any> {
+  async searchRecipes(name?: string, cookingTime?: number, ingredients?: string[]): Promise<any> {
     const query: any = {}
-
     if(name) {
       query.name = {$regex: name, $options: 'i'}
     }
     if(cookingTime) {
       query.cookingTime = cookingTime
     }
-    return this.recipesModule.find(query).exec()
-  }
+    if (ingredients && ingredients.length > 0) {
+      query.ingredients = { $all: ingredients }; // Matches recipes containing all the provided ingredients
+    }
 
-  async findRecipesByIngredients(ingredients: string[]): promise<any> {
-    return this.recipesModule.find({
-      ingredients: {$all: ingredients}
-    }).exec()
+    return this.recipesModule.find(query).exec()
   }
 }
