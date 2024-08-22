@@ -23,4 +23,22 @@ export class RecipesService {
       throw new Error(error.message);
     }
   }
+
+  async searchRecipeByNameOrTime(name?: string, cookingTime?: number): Promise<any> {
+    const query: any = {}
+
+    if(name) {
+      query.name = {$regex: name, $options: 'i'}
+    }
+    if(cookingTime) {
+      query.cookingTime = cookingTime
+    }
+    return this.recipesModule.find(query).exec()
+  }
+
+  async findRecipesByIngredients(ingredients: string[]): promise<any> {
+    return this.recipesModule.find({
+      ingredients: {$all: ingredients}
+    }).exec()
+  }
 }
