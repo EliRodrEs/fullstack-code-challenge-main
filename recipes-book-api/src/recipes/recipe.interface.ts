@@ -8,7 +8,7 @@ export interface RecipeDto  {
     name: string
     ingredientes: string[]
     description: string
-    difficulty: RecipeDifficultyEnum
+    difficulty: 'Easy' | 'Medium' | 'Hard'
     cookingTime: number
 }
 
