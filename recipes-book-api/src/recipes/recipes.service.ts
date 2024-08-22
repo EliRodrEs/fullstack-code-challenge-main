@@ -33,7 +33,7 @@ export class RecipesService {
       query.cookingTime = cookingTime
     }
     if (ingredients && ingredients.length > 0) {
-      query.ingredients = { $all: ingredients }; // Matches recipes containing all the provided ingredients
+      query.ingredients = { $all: ingredients }
     }
 
     return this.recipesModule.find(query).exec()
